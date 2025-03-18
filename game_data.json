@@ -1,0 +1,230 @@
+{
+  "locations": [
+    {
+      "id": 1,
+      "name": "Woodsworth College Residence",
+      "brief_description": "Your cozy dorm room, filled with reminders of student life.",
+      "long_description": "Your tiny yet cozy dorm room. A desk piled with notes and snacks faces the window, and a bed sits in the corner. Posters line the walls, and your laptop is resting on the desk.",
+      "available_movements": {
+        "north": 2,
+        "east": 3
+      },
+      "take_actions": ["broken laptop charger"],
+      "use_actions": ["fixed laptop charger"]
+    },
+    {
+      "id": 2,
+      "name": "Mechanical Engineering Machine Shop",
+      "brief_description": "A bustling workshop with all the tools and machines you could dream of.",
+      "long_description": "The machine shop is a hub of activity, with students working on projects using high-tech tools. Shelves of parts and workstations fill up the entire space.",
+      "available_movements": {
+        "north": 7,
+        "south": 1,
+        "west": 4
+      },
+      "take_actions": ["soldering iron"],
+      "use_actions": []
+    },
+    {
+      "id": 3,
+      "name": "Convocation Hall",
+      "brief_description": "A grand lecture hall that makes you feel like you're part of history.",
+      "long_description": "This iconic lecture hall is vast, with high ceilings and rows of tiered seating. The podium stands prominently, equipped for lectures and ceremonies.",
+      "available_movements": {
+        "east": 5,
+        "west": 1
+      },
+      "take_actions": ["lucky mug"],
+      "use_actions": ["USB drive"] 
+    },
+    {
+      "id": 4,
+      "name": "King's College Circle",
+      "brief_description": "A tranquil green space surrounded by historic buildings.",
+      "long_description": "This circular garden is a peaceful escape. Well-maintained paths wind through the greenery, and benches provide a place to rest while admiring the university's architecture.",
+      "available_movements": {
+        "north": 6,
+        "east": 2,
+        "west": 9
+      },
+      "take_actions": ["lost backpack"],
+      "use_actions": []
+    },
+    {
+      "id": 5,
+      "name": "Robarts Library",
+      "brief_description": "A towering library with endless resources for studying.",
+      "long_description": "Inside this 14 storey library, the smell of old books mixes with the faint hum of computers. Study desks are scattered among shelves holding every book imaginable.",
+      "available_movements": {
+        "north": 8,
+        "west": 3
+      },
+      "take_actions": ["historical book"],
+      "use_actions": []
+    },
+    {
+      "id": 6,
+      "name": "Sandford Fleming Laboratory",
+      "brief_description": "A quiet lab with an open workbench for repairs and experiments.",
+      "long_description": "This lab is designed for learning and discovery. Equipment for experiments is neatly arranged, and there is a open workbench. Hmmm, what could you do here?",
+      "available_movements": {
+        "east": 7,
+        "south": 4
+      },
+      "take_actions": [],
+      "use_actions": []
+    },
+    {
+      "id": 7,
+      "name": "Royal Ontario Museum (ROM)",
+      "brief_description": "A world-renowned museum filled with historical artifacts and exhibits.",
+      "long_description": "The museum showcases artifacts from around the world. Its elegant displays and quiet atmosphere make it a fascinating place to explore history and culture.",
+      "available_movements": {
+        "south": 2,
+        "east": 10,
+        "west": 6
+      },
+      "take_actions": ["USB drive"],
+      "use_actions": ["historical book"]
+    },
+    {
+      "id": 8,
+      "name": "Hart House",
+      "brief_description": "A vibrant hub for student arts and activities.",
+      "long_description": "Hart House is alive with activity, from theater rehearsals to art workshops. Cozy lounges and galleries make this a cultural gem on campus.",
+      "available_movements": {
+        "north": 11,
+        "south": 5
+      },
+      "take_actions": ["free coffee coupon"],
+      "use_actions": []
+    },
+    {
+      "id": 9,
+      "name": "Athletic Centre (AC)",
+      "brief_description": "The go-to spot for fitness and recreation.",
+      "long_description": "The center houses modern gym equipment, courts, and a pool. Students are seen training, playing sports, or relaxing post-workout.",
+      "available_movements": {
+        "east": 4
+      },
+      "take_actions": ["electrical tape"],
+      "use_actions": ["lucky mug"]
+    },
+    {
+      "id": 10,
+      "name": "Sidney Smith Cafe",
+      "brief_description": "A lively cafe perfect for grabbing coffee or snacks.",
+      "long_description": "This cafe buzzes with conversations as students gather between classes. The smell of fresh coffee fills the air, and the counters are stocked with snacks and meals.",
+      "available_movements": {
+        "east": 11,
+        "west": 7
+      },
+      "take_actions": [],
+      "use_actions": ["free coffee coupon"]
+    },
+    {
+      "id": 11,
+      "name": "UofT Bookstore",
+      "brief_description": "A one-stop shop for textbooks, supplies, and university merch.",
+      "long_description": "The bookstore is well-organized, with sections for textbooks, stationery, and a range of UofT-branded items. Friendly staff are ready to help you find what you need.",
+      "available_movements": {
+        "south": 8,
+        "west": 10 
+      },
+      "take_actions": ["screwdriver kit"],
+      "use_actions": ["lost backpack"]
+    }
+  ],
+  "items": [
+    {
+      "name": "lucky mug",
+      "description": "A mug with a four-leaf clover design, believed to bring good luck.",
+      "quest_description": "The varsity team considers this mug their lucky charm for tournaments. They might need it back.",
+      "quest_completed_description": "You have successfully returned the lucky mug to the varsity team, boosting their morale.",
+      "pickup_points": 20,
+      "use_points": 20,
+      "pickup_stamina_usage": 4,
+      "use_stamina_usage": 2
+    },
+    {
+      "name": "historical book",
+      "description": "A rare book with intricate illustrations.",
+      "quest_description": "The librarian told you a professor at the museum needs a rare book for research.",
+      "quest_completed_description": "You have successfully assisted the professor's research.",
+      "pickup_points": 20,
+      "use_points": 20,
+      "pickup_stamina_usage": 4,
+      "use_stamina_usage": 2
+    },
+    {
+      "name": "free coffee coupon",
+      "description": "A food coupon for a free coffee under your seat in the lecture hall.",
+      "quest_description": "A coffee would restore your energy back to FULL.",
+      "quest_completed_description": "You are FULL of energy!",
+      "pickup_points": 5,
+      "use_points": 5,
+      "pickup_stamina_usage": 4,
+      "use_stamina_usage": -100
+    },
+    {
+      "name": "lost backpack",
+      "description": "A student rushing to class left their backpack in the front courtyard.",
+      "quest_description": "Upon inspecting it, the player finds a receipt for textbooks purchased earlier in the day.",
+      "quest_completed_description": "The bookstore staff appreciate your honesty and reward you with a new backpack that can FIT 7 ITEMS NOW.",
+      "pickup_points": 5,
+      "use_points": 5,
+      "pickup_stamina_usage": 4,
+      "use_stamina_usage": 2
+    },
+    {
+      "name": "USB drive",
+      "description": "A USB drive containing important historical lecture materials.",
+      "quest_description": "The museum staff tell you a professor forgot this for an important lecture coming up.",
+      "quest_completed_description": "The professor is extremely grateful for your help.",
+      "pickup_points": 20,
+      "use_points": 20,
+      "pickup_stamina_usage": 4,
+      "use_stamina_usage": 2
+    },
+    {
+      "name": "soldering iron",
+      "description": "A tool used for soldering wires and components.",
+      "quest_description": "This could be useful to reattached severed wires.",
+      "quest_completed_description": "",
+      "pickup_points": 0,
+      "use_points": 0,
+      "pickup_stamina_usage": 4,
+      "use_stamina_usage": 2
+    },
+    {
+      "name": "broken laptop charger",
+      "description": "Your special laptop charger that is completely torn apart.",
+      "quest_description": "You need to fix it to charge your laptop.",
+      "quest_completed_description": "",
+      "pickup_points": 0,
+      "use_points": 0,
+      "pickup_stamina_usage": 4,
+      "use_stamina_usage": 2
+    },
+    {
+      "name": "electrical tape",
+      "description": "A roll of electrical tape for quick fixes on gym equipment.",
+      "quest_description": "This is perfect for insulating exposed wires.",
+      "quest_completed_description": "",
+      "pickup_points": 0,
+      "use_points": 0,
+      "pickup_stamina_usage": 4,
+      "use_stamina_usage": 2
+    },
+    {
+      "name": "screwdriver kit",
+      "description": "A set of screwdrivers in various sizes.",
+      "quest_description": "This seems ideal for opening and repairing a chargers power adapter.",
+      "quest_completed_description": "",
+      "pickup_points": 0,
+      "use_points": 0,
+      "pickup_stamina_usage": 4,
+      "use_stamina_usage": 2
+    }
+  ]
+}
