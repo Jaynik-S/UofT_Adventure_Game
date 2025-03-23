@@ -219,7 +219,7 @@ if __name__ == "__main__":
                         tw_print(f'{col_b(name)}: {game.inventory[name].quest_description}')
 
             elif choice == "score":
-                tw_print(f"{col_g('Your progress shows you\'re on track to achieve a score of')} {col_y(game.score)}.")
+                tw_print(f"{col_g('Your progress shows you are on track to achieve a score of')} {col_y(game.score)}.")
             
             elif choice == "undo":
                 message = game_log.undo_last_action(game)
