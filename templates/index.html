@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UofT Adventure Game</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to UofT Adventure Game</h1>
+        <div class="intro">
+            <p>You wake up with a start in your dorm room, heart racing.</p>
+            <p>What was supposed to be a quick 15-minute power nap has turned into a 5-hour slumber.</p>
+            <p>Groggily, you glance at the clock—time is slipping away, and your final assignment is due soon.</p>
+            <p>You need a perfect score to secure the grade you've been aiming for all semester.</p>
+            
+            <p>Still half-asleep, you reach for your laptop, only to discover it's completely dead.</p>
+            <p class="alert">Panic sets in as you spot your special one-of-a-kind laptop charger lying on the floor... utterly destroyed.</p>
+            <p>The wires are frayed, and the casing is shattered. Without it, your assignment might as well be doomed.</p>
+            
+            <p>Determined, you muster every ounce of resolve. Somewhere on campus are the tools and items you need to repair the charger.</p>
+            <p>But it won't be easy. As you navigate the campus and interact with others, your good deeds and problem-solving skills will determine how close you come to success.</p>
+            <p>Your predicted score will improve with each good deed, and you'll need to achieve a perfect 100 score to save your semester.</p>
+            
+            <p>Be careful, though—your energy starts at 100 but will drain as you travel from location to location and pick up or deposit items.</p>
+            <p class="alert">If your energy runs out, it's game over.</p>
+            <p>Luckily, there are items hidden across campus that can bring you back to full energy—if you can find them.</p>
+            
+            <p>To make things trickier, your backpack is quite small and can only carry five items at once.</p>
+            <p>You'll need to think strategically about what to carry and what to leave behind.</p>
+            <p>But perhaps there's a way to get a bigger backpack if you look in the right places.</p>
+            
+            <p>The clock is ticking. Your friend is counting on you.</p>
+            <p class="success">Can you fix your charger, finish your assignment, and save the day?</p>
+            <p>The journey begins now—your choices, your actions, and your timing will decide your fate.</p>
+        </div>
+        
+        <form action="{{ url_for('start_game') }}" method="post">
+            <div class="form-group">
+                <label for="typewriter_effect">Enable typewriter effect?</label>
+                <select name="typewriter_effect" id="typewriter_effect">
+                    <option value="yes">Yes</option>
+                    <option value="no" selected>No</option>
+                </select>
+            </div>
+            
+            <div class="form-group" id="typewriter_settings" style="display: none;">
+                <label for="char_delay">Character delay (seconds):</label>
+                <input type="number" name="char_delay" id="char_delay" step="0.001" min="0.001" max="0.1" value="0.0225">
+                <small>Recommended: 0.0225, Fast: 0.01</small>
+            </div>
+            
+            <button type="submit" class="btn">Start Adventure</button>
+        </form>
+    </div>
+    
+    <script>
+        document.getElementById('typewriter_effect').addEventListener('change', function() {
+            const settings = document.getElementById('typewriter_settings');
+            if (this.value === 'yes') {
+                settings.style.display = 'block';
+            } else {
+                settings.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UofT Adventure Game - Event Log</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Game Event Log</h1>
+        
+        <div class="log-content">
+            {% if events %}
+                <ul class="event-list">
+                    {% for event in events %}
+                        <li class="event-item">
+                            <p class="event-desc">{{ event.description }}</p>
+                            {% if event.command %}
+                                <p class="event-cmd">You chose: {{ event.command }}</p>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No events recorded yet.</p>
+            {% endif %}
+        </div>
+        
+        <a href="{{ url_for('game') }}" class="btn">Back to Game</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,345 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f0f2f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    color: #3c4043;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #3c4043;
+    margin: 15px 0;
+}
+
+h3 {
+    color: #3c4043;
+    margin: 10px 0;
+}
+
+p {
+    margin-bottom: 10px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #4285f4;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.btn:hover {
+    background-color: #3367d6;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+select, input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+small {
+    color: #666;
+    font-size: 12px;
+}
+
+/* Intro Page Styles */
+.intro {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.alert {
+    color: #d93025;
+    font-weight: bold;
+}
+
+.success {
+    color: #188038;
+    font-weight: bold;
+}
+
+/* Game Page Styles */
+.game-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.game-header {
+    background-color: #fff;
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.status-bar {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.status-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.status-label {
+    font-weight: bold;
+    color: #3c4043;
+}
+
+.progress-bar {
+    width: 100px;
+    height: 10px;
+    background-color: #e8eaed;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background-color: #34a853;
+}
+
+.menu-bar {
+    display: flex;
+    gap: 10px;
+}
+
+.menu-btn {
+    padding: 5px 10px;
+    background-color: #e8eaed;
+    color: #3c4043;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.menu-btn:hover {
+    background-color: #dadce0;
+}
+
+.game-content {
+    flex: 1;
+    padding: 20px;
+    background-color: #fff;
+    margin: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.location-info {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e8eaed;
+}
+
+.hint {
+    color: #188038;
+    font-style: italic;
+}
+
+.game-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.action-section {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.direction-btn {
+    padding: 8px 16px;
+    background-color: #5f6368;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 5px;
+    text-transform: capitalize;
+}
+
+.direction-btn:hover {
+    background-color: #3c4043;
+}
+
+.inventory-section {
+    grid-column: 1 / span 2;
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.inventory-list {
+    list-style-type: none;
+}
+
+.inventory-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid #e8eaed;
+}
+
+.inventory-list li:last-child {
+    border-bottom: none;
+}
+
+.craft-message {
+    background-color: #e6f4ea;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.win-message, .lose-message {
+    text-align: center;
+    padding: 40px 0;
+}
+
+.win-message h2 {
+    color: #188038;
+}
+
+.lose-message h2 {
+    color: #d93025;
+}
+
+/* Help Page Styles */
+.help-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.command-list li, .map-legend li {
+    margin-bottom: 8px;
+}
+
+.game-map {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.map-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+}
+
+.map-table td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #e8eaed;
+    font-weight: bold;
+}
+
+/* Log Page Styles */
+.log-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.event-list {
+    list-style-type: none;
+}
+
+.event-item {
+    padding: 15px;
+    border-bottom: 1px solid #e8eaed;
+}
+
+.event-item:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.event-desc {
+    font-weight: bold;
+}
+
+.event-cmd {
+    color: #5f6368;
+    font-style: italic;
+    margin-top: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .game-actions {
+        grid-template-columns: 1fr;
+    }
+    
+    .inventory-section {
+        grid-column: 1;
+    }
+    
+    .status-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .game-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .menu-bar {
+        width: 100%;
+        justify-content: space-between;
+    }
+}

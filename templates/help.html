@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UofT Adventure Game - Help</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>UofT Adventure Game - Help</h1>
+        
+        <div class="help-content">
+            <h2>Game Commands</h2>
+            <ul class="command-list">
+                <li>
+                    <strong>Go [Direction]</strong> - Move to a different location (north, south, east, west)
+                </li>
+                <li>
+                    <strong>Take</strong> - Take an item from the current location
+                </li>
+                <li>
+                    <strong>Deposit</strong> - Deposit/use an item from your inventory at the current location
+                </li>
+                <li>
+                    <strong>Drop</strong> - Drop an item from your inventory at the current location
+                </li>
+                <li>
+                    <strong>Undo</strong> - Reverse the most recent command and any associated changes to the game
+                </li>
+                <li>
+                    <strong>Log</strong> - View list of all the events (locations visited, commands chosen) in order
+                </li>
+                <li>
+                    <strong>Help</strong> - Display this help page
+                </li>
+                <li>
+                    <strong>Quit</strong> - Quit the game and return to the start screen
+                </li>
+            </ul>
+
+            <h2>Game Rules</h2>
+            <ul>
+                <li>Your stamina starts at 100 and decreases when you move or interact with items</li>
+                <li>If your stamina reaches 0, the game ends</li>
+                <li>You need to achieve a score of 100 to win</li>
+                <li>Your inventory can initially hold 5 items</li>
+                <li>Some items have special effects when used in the correct location</li>
+                <li>To win, you need to fix your laptop charger, achieve a score of 100, and return to your dorm</li>
+            </ul>
+            
+            <h2>Stamina Usage</h2>
+            <ul>
+                <li>Moving between locations: -3 stamina</li>
+                <li>Taking an item: -4 stamina</li>
+                <li>Using an item: -2 stamina (may vary for special items)</li>
+            </ul>
+            
+            <h2>Special Items</h2>
+            <ul>
+                <li><strong>Free Coffee Coupon</strong>: Restores stamina to full when used at Sidney Smith Cafe</li>
+                <li><strong>Lost Backpack</strong>: Increases inventory size from 5 to 7 when returned to UofT Bookstore</li>
+            </ul>
+        </div>
+        
+        <div class="game-map">
+            <h2>Game Map</h2>
+            <table class="map-table">
+                <tr>
+                    <td>-</td>
+                    <td>6</td>
+                    <td>7</td>
+                    <td>10</td>
+                    <td>11</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>4</td>
+                    <td>2</td>
+                    <td>-</td>
+                    <td>8</td>
+                </tr>
+                <tr>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>1</td>
+                    <td>3</td>
+                    <td>5</td>
+                </tr>
+            </table>
+            
+            <h3>Map Legend</h3>
+            <ul class="map-legend">
+                <li><strong>1</strong>: Woodsworth College Residence</li>
+                <li><strong>2</strong>: Mechanical Engineering Machine Shop</li>
+                <li><strong>3</strong>: Convocation Hall</li>
+                <li><strong>4</strong>: King's College Circle</li>
+                <li><strong>5</strong>: Robarts Library</li>
+                <li><strong>6</strong>: Sandford Fleming Laboratory</li>
+                <li><strong>7</strong>: Royal Ontario Museum (ROM)</li>
+                <li><strong>8</strong>: Hart House</li>
+                <li><strong>9</strong>: Athletic Centre (AC)</li>
+                <li><strong>10</strong>: Sidney Smith Cafe</li>
+                <li><strong>11</strong>: UofT Bookstore</li>
+            </ul>
+        </div>
+        
+        <a href="{{ url_for('game') }}" class="btn">Back to Game</a>
+    </div>
+</body>
+</html>

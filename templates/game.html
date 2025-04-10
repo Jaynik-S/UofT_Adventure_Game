@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UofT Adventure Game</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-header">
+            <div class="status-bar">
+                <div class="status-item">
+                    <span class="status-label">Score:</span>
+                    <span class="status-value">{{ score }}</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Stamina:</span>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: {{ stamina }}%"></div>
+                    </div>
+                    <span class="status-value">{{ stamina }}%</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Location:</span>
+                    <span class="status-value">{{ location.id_num }}: {{ location.name }}</span>
+                </div>
+            </div>
+            <div class="menu-bar">
+                <a href="{{ url_for('help_page') }}" class="menu-btn">Help</a>
+                <a href="{{ url_for('view_log') }}" class="menu-btn">Log</a>
+                <a href="{{ url_for('index') }}" class="menu-btn">Quit</a>
+            </div>
+        </div>
+
+        <div class="game-content">
+            {% if win_condition %}
+                <div class="win-message">
+                    <h2>Congratulations!</h2>
+                    <p class="typewriter">You have fixed your laptop charger and have plenty of time to complete your assignment, and I have a feeling after all your hard work you get the score you desire.</p>
+                    <a href="{{ url_for('index') }}" class="btn">Play Again</a>
+                </div>
+            {% elif lose_condition %}
+                <div class="lose-message">
+                    <h2>Game Over</h2>
+                    <p class="typewriter">You feel completely exhausted and can no longer continue. You'll need to try again.</p>
+                    <a href="{{ url_for('index') }}" class="btn">Try Again</a>
+                </div>
+            {% else %}
+                <div class="location-info">
+                    <h2>{{ location.name }}</h2>
+                    <p class="typewriter">{{ description }}</p>
+                    
+                    {% if has_enough_points and has_charger and location.id_num != 1 %}
+                        <p class="hint typewriter">You have everything required to complete your assignment. Return to Woodsworth College Residence to submit your assignment and finish your journey.</p>
+                    {% elif has_enough_points %}
+                        <p class="hint typewriter">You have enough points to get your desired score, but your laptop charger is still broken. There might be some items you need to find to fix it.</p>
+                    {% elif has_charger %}
+                        <p class="hint typewriter">You have the fixed laptop charger, but you need more points to get your desired score.</p>
+                    {% endif %}
+                    
+                    {% if can_craft_charger %}
+                        <div class="craft-message">
+                            <p class="typewriter">You have all the items needed to fix your laptop charger!</p>
+                            <form action="{{ url_for('action') }}" method="post">
+                                <input type="hidden" name="action" value="craft">
+                                <button type="submit" class="btn">Fix Laptop Charger</button>
+                            </form>
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="game-actions">
+                    <div class="action-section">
+                        <h3>Movement</h3>
+                        <form action="{{ url_for('action') }}" method="post">
+                            <input type="hidden" name="action" value="go">
+                            {% for direction, _ in available_moves.items() %}
+                                <button type="submit" name="direction" value="{{ direction }}" class="direction-btn">{{ direction }}</button>
+                            {% endfor %}
+                        </form>
+                    </div>
+
+                    <div class="action-section">
+                        <h3>Items</h3>
+                        {% if can_take %}
+                            <form action="{{ url_for('action') }}" method="post">
+                                <input type="hidden" name="action" value="take">
+                                <select name="item">
+                                    {% for item_name, item in items_present.items() %}
+                                        <option value="{{ item_name }}">{{ item_name }}: {{ item.description }}</option>
+                                    {% endfor %}
+                                </select>
+                                <button type="submit" class="btn">Take Item</button>
+                            </form>
+                        {% endif %}
+                        
+                        {% if can_deposit and usable_items %}
+                            <form action="{{ url_for('action') }}" method="post">
+                                <input type="hidden" name="action" value="deposit">
+                                <select name="item">
+                                    {% for item_name in usable_items %}
+                                        <option value="{{ item_name }}">{{ item_name }}</option>
+                                    {% endfor %}
+                                </select>
+                                <button type="submit" class="btn">Deposit Item</button>
+                            </form>
+                        {% endif %}
+                        
+                        {% if can_drop %}
+                            <form action="{{ url_for('action') }}" method="post">
+                                <input type="hidden" name="action" value="drop">
+                                <select name="item">
+                                    {% for item_name, item in inventory.items() %}
+                                        <option value="{{ item_name }}">{{ item_name }}: {{ item.description }}</option>
+                                    {% endfor %}
+                                </select>
+                                <button type="submit" class="btn">Drop Item</button>
+                            </form>
+                        {% endif %}
+                        
+                        <form action="{{ url_for('action') }}" method="post">
+                            <input type="hidden" name="action" value="undo">
+                            <button type="submit" class="btn">Undo Last Action</button>
+                        </form>
+                    </div>
+
+                    <div class="inventory-section">
+                        <h3>Inventory ({{ inventory|length }}/{{ inventory_size }} items)</h3>
+                        {% if inventory %}
+                            <ul class="inventory-list">
+                                {% for item_name, item in inventory.items() %}
+                                    <li>
+                                        <strong>{{ item_name }}</strong>
+                                        {% if item.quest_description %}
+                                            <p>{{ item.quest_description }}</p>
+                                        {% endif %}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p>Your inventory is empty.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if typewriter_effect %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const typewriterElements = document.querySelectorAll('.typewriter');
+            const charDelay = {{ char_delay }} * 1000; // Convert to milliseconds
+            
+            typewriterElements.forEach(element => {
+                const text = element.textContent;
+                element.textContent = '';
+                let i = 0;
+                
+                function typeWriter() {
+                    if (i < text.length) {
+                        element.textContent += text.charAt(i);
+                        i++;
+                        setTimeout(typeWriter, charDelay);
+                    }
+                }
+                
+                typeWriter();
+            });
+        });
+    </script>
+    {% endif %}
+</body>
+</html>
