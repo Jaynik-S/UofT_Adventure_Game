@@ -71,76 +71,97 @@
                 </div>
 
                 <div class="game-actions">
-                    <div class="action-section">
-                        <h3>Movement</h3>
-                        <form action="{{ url_for('action') }}" method="post">
-                            <input type="hidden" name="action" value="go">
-                            {% for direction, _ in available_moves.items() %}
-                                <button type="submit" name="direction" value="{{ direction }}" class="direction-btn">{{ direction }}</button>
-                            {% endfor %}
-                        </form>
-                    </div>
-
-                    <div class="action-section">
-                        <h3>Items</h3>
-                        {% if can_take %}
+                    <div class="left-column">
+                        <div class="action-section">
+                            <h3>Movement</h3>
                             <form action="{{ url_for('action') }}" method="post">
-                                <input type="hidden" name="action" value="take">
-                                <select name="item">
-                                    {% for item_name, item in items_present.items() %}
-                                        <option value="{{ item_name }}">{{ item_name }}: {{ item.description }}</option>
-                                    {% endfor %}
-                                </select>
-                                <button type="submit" class="btn">Take Item</button>
-                            </form>
-                        {% endif %}
-                        
-                        {% if can_deposit and usable_items %}
-                            <form action="{{ url_for('action') }}" method="post">
-                                <input type="hidden" name="action" value="deposit">
-                                <select name="item">
-                                    {% for item_name in usable_items %}
-                                        <option value="{{ item_name }}">{{ item_name }}</option>
-                                    {% endfor %}
-                                </select>
-                                <button type="submit" class="btn">Deposit Item</button>
-                            </form>
-                        {% endif %}
-                        
-                        {% if can_drop %}
-                            <form action="{{ url_for('action') }}" method="post">
-                                <input type="hidden" name="action" value="drop">
-                                <select name="item">
-                                    {% for item_name, item in inventory.items() %}
-                                        <option value="{{ item_name }}">{{ item_name }}: {{ item.description }}</option>
-                                    {% endfor %}
-                                </select>
-                                <button type="submit" class="btn">Drop Item</button>
-                            </form>
-                        {% endif %}
-                        
-                        <form action="{{ url_for('action') }}" method="post">
-                            <input type="hidden" name="action" value="undo">
-                            <button type="submit" class="btn">Undo Last Action</button>
-                        </form>
-                    </div>
-
-                    <div class="inventory-section">
-                        <h3>Inventory ({{ inventory|length }}/{{ inventory_size }} items)</h3>
-                        {% if inventory %}
-                            <ul class="inventory-list">
-                                {% for item_name, item in inventory.items() %}
-                                    <li>
-                                        <strong>{{ item_name }}</strong>
-                                        {% if item.quest_description %}
-                                            <p>{{ item.quest_description }}</p>
-                                        {% endif %}
-                                    </li>
+                                <input type="hidden" name="action" value="go">
+                                {% for direction, _ in available_moves.items() %}
+                                    <button type="submit" name="direction" value="{{ direction }}" class="direction-btn">{{ direction }}</button>
                                 {% endfor %}
-                            </ul>
-                        {% else %}
-                            <p>Your inventory is empty.</p>
-                        {% endif %}
+                            </form>
+                        </div>
+                        
+                        <div class="action-section">
+                            <h3>Other Actions</h3>
+                            <form action="{{ url_for('action') }}" method="post">
+                                <input type="hidden" name="action" value="undo">
+                                <button type="submit" class="btn">Undo Last Action</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="right-column">
+                        <div class="action-section">
+                            <h3>Take Items</h3>
+                            {% if can_take %}
+                                <form action="{{ url_for('action') }}" method="post">
+                                    <input type="hidden" name="action" value="take">
+                                    <select name="item">
+                                        {% for item_name, item in items_present.items() %}
+                                            <option value="{{ item_name }}">{{ item_name }}: {{ item.description }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <button type="submit" class="btn">Take Item</button>
+                                </form>
+                            {% else %}
+                                <p>No items available to take here.</p>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="action-section">
+                            <h3>Use Items</h3>
+                            {% if can_deposit and usable_items %}
+                                <form action="{{ url_for('action') }}" method="post">
+                                    <input type="hidden" name="action" value="deposit">
+                                    <select name="item">
+                                        {% for item_name in usable_items %}
+                                            <option value="{{ item_name }}">{{ item_name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <button type="submit" class="btn">Deposit Item</button>
+                                </form>
+                            {% else %}
+                                <p>No items can be used here.</p>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="action-section">
+                            <h3>Drop Items</h3>
+                            {% if can_drop %}
+                                <form action="{{ url_for('action') }}" method="post">
+                                    <input type="hidden" name="action" value="drop">
+                                    <select name="item">
+                                        {% for item_name, item in inventory.items() %}
+                                            <option value="{{ item_name }}">{{ item_name }}: {{ item.description }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <button type="submit" class="btn">Drop Item</button>
+                                </form>
+                            {% else %}
+                                <p>Your inventory is empty. Nothing to drop.</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="full-width">
+                        <div class="inventory-section">
+                            <h3>Inventory ({{ inventory|length }} / {{ inventory_size }})</h3>
+                            {% if inventory %}
+                                <ul class="inventory-list">
+                                    {% for item_name, item in inventory.items() %}
+                                        <li>
+                                            <strong>{{ item_name }}</strong>
+                                            {% if item.quest_description %}
+                                                <p>{{ item.quest_description }}</p>
+                                            {% endif %}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% else %}
+                                <p>Your inventory is empty.</p>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
             {% endif %}

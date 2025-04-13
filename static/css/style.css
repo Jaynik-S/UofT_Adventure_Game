@@ -183,9 +183,27 @@ small {
 }
 
 .game-actions {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
     gap: 20px;
+    flex-wrap: wrap;
+}
+
+.left-column {
+    flex: 1;
+    min-width: 250px;
+}
+
+.right-column {
+    flex: 1;
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.full-width {
+    width: 100%;
+    margin-top: 20px;
 }
 
 .action-section {
@@ -320,7 +338,7 @@ small {
 /* Responsive Design */
 @media (max-width: 768px) {
     .game-actions {
-        grid-template-columns: 1fr;
+        flex-direction: column;
     }
     
     .inventory-section {

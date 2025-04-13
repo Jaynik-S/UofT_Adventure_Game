@@ -110,6 +110,7 @@ def game():
         available_moves=available_moves,
         items_present=items_present,
         inventory=game.inventory,
+        inventory_size=game.inventory_size,
         score=game.score,
         stamina=game.stamina,
         can_take=can_take,
