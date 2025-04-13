@@ -303,7 +303,7 @@ def handle_craft_action(game):
         # Log the event
         game_log.add_event(Event(game.current_location_id, "Fixed your laptop charger!"), "Took fixed laptop charger")
 
-def handle_undo_action(game):
+def handle_undo_action(game): 
     """Handle the undo action"""
     message = game_log.undo_last_action(game)
     if game_log.last:

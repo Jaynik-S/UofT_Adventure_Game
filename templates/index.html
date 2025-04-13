@@ -5,11 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UofT Adventure Game</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to UofT Adventure Game</h1>
-        <div class="intro">
+        <h1 id="welcome-title" class="initial-text"></h1>
+        
+        <div id="typewriter-selection" class="form-section hidden">
+            <h2 id="select-experience" class="initial-text"></h2>
+            <p id="choose-story" class="initial-text"></p>
+            <div class="form-group">
+                <label id="typewriter-label" class="initial-text"></label>
+                <div class="speed-buttons">
+                    <div class="speed-option">
+                        <input type="radio" name="typewriter_effect" id="none" value="no" checked>
+                        <label for="none">None</label>
+                        <input type="hidden" name="char_delay" value="0" disabled>
+                    </div>
+                    <div class="speed-option">
+                        <input type="radio" name="typewriter_effect" id="slow" value="yes">
+                        <label for="slow">Slow</label>
+                        <input type="hidden" name="char_delay" value="0.025" disabled>
+                    </div>
+                    <div class="speed-option">
+                        <input type="radio" name="typewriter_effect" id="medium" value="yes">
+                        <label for="medium">Medium</label>
+                        <input type="hidden" name="char_delay" value="0.02" disabled>
+                    </div>
+                    <div class="speed-option">
+                        <input type="radio" name="typewriter_effect" id="fast" value="yes">
+                        <label for="fast">Fast</label>
+                        <input type="hidden" name="char_delay" value="0.017" disabled>
+                    </div>
+                    <div class="speed-option">
+                        <input type="radio" name="typewriter_effect" id="very-fast" value="yes">
+                        <label for="very-fast">Very Fast</label>
+                        <input type="hidden" name="char_delay" value="0.0075" disabled>
+                    </div>
+                </div>
+            </div>
+            <button id="apply-typewriter" class="btn">Begin Your Story</button>
+        </div>
+        
+        <div id="intro-section" class="intro hidden">
             <p>You wake up with a start in your dorm room, heart racing.</p>
             <p>What was supposed to be a quick 15-minute power nap has turned into a 5-hour slumber.</p>
             <p>Groggily, you glance at the clock—time is slipping away, and your final assignment is due soon.</p>
@@ -36,54 +78,150 @@
             <p>The journey begins now—your choices, your actions, and your timing will decide your fate.</p>
         </div>
         
-        <form action="{{ url_for('start_game') }}" method="post">
-            <div class="form-group">
-                <label>Typewriter Effect:</label>
-                <div class="speed-buttons">
-                    <div class="speed-option">
-                        <input type="radio" name="typewriter_effect" id="none" value="no" checked>
-                        <label for="none">None</label>
-                    </div>
-                    <div class="speed-option">
-                        <input type="radio" name="typewriter_effect" id="slow" value="yes">
-                        <label for="slow">Slow</label>
-                        <input type="hidden" name="char_delay" value="0.05" disabled>
-                    </div>
-                    <div class="speed-option">
-                        <input type="radio" name="typewriter_effect" id="medium" value="yes">
-                        <label for="medium">Medium</label>
-                        <input type="hidden" name="char_delay" value="0.025" disabled>
-                    </div>
-                    <div class="speed-option">
-                        <input type="radio" name="typewriter_effect" id="fast" value="yes">
-                        <label for="fast">Fast</label>
-                        <input type="hidden" name="char_delay" value="0.017" disabled>
-                    </div>
-                    <div class="speed-option">
-                        <input type="radio" name="typewriter_effect" id="very-fast" value="yes">
-                        <label for="very-fast">Very Fast</label>
-                        <input type="hidden" name="char_delay" value="0.0075" disabled>
-                    </div>
-                </div>
-            </div>
-            
+        <form id="start-form" action="{{ url_for('start_game') }}" method="post" class="hidden">
+            <input type="hidden" name="typewriter_effect" id="final-effect-type" value="no">
+            <input type="hidden" name="char_delay" id="final-delay-value" value="0">
             <button type="submit" class="btn">Start Adventure</button>
         </form>
     </div>
     
     <script>
-        document.querySelectorAll('input[name="typewriter_effect"]').forEach(function(radio) {
-            radio.addEventListener('change', function() {
-                // Enable/disable the hidden input for the selected option
-                document.querySelectorAll('.speed-option input[type="hidden"]').forEach(function(input) {
-                    input.disabled = true;
-                });
+        document.addEventListener('DOMContentLoaded', function() {
+            const radioButtons = document.querySelectorAll('input[name="typewriter_effect"]');
+            const applyButton = document.getElementById('apply-typewriter');
+            const introSection = document.getElementById('intro-section');
+            const startForm = document.getElementById('start-form');
+            const finalEffectType = document.getElementById('final-effect-type');
+            const finalDelayValue = document.getElementById('final-delay-value');
+            
+            // Initial text content
+            const welcomeTitle = document.getElementById('welcome-title');
+            const selectExperience = document.getElementById('select-experience');
+            const chooseStory = document.getElementById('choose-story');
+            const typewriterLabel = document.getElementById('typewriter-label');
+            
+            // Set the text content for elements
+            welcomeTitle.dataset.originalText = "Welcome to UofT Adventure Game";
+            selectExperience.dataset.originalText = "Select Your Experience";
+            chooseStory.dataset.originalText = "Choose how you'd like the story to be revealed:";
+            typewriterLabel.dataset.originalText = "Typewriter Effect:";
+            
+            // Function to apply typewriter effect to an element
+            function applyTypewriterToElement(element, callback) {
+                const text = element.dataset.originalText;
+                element.textContent = '';
+                let i = 0;
                 
-                if (this.value === 'yes') {
-                    const hiddenInput = this.parentNode.querySelector('input[type="hidden"]');
-                    if (hiddenInput) {
-                        hiddenInput.disabled = false;
+                function typeText() {
+                    if (i < text.length) {
+                        element.textContent += text.charAt(i);
+                        i++;
+                        setTimeout(typeText, 0.03 * 1000);
+                    } else if (callback) {
+                        callback();
                     }
+                }
+                
+                typeText();
+            }
+            
+            // Type each element in sequence
+            applyTypewriterToElement(welcomeTitle, function() {
+                // Show typewriter selection after welcome title is typed
+                document.getElementById('typewriter-selection').classList.remove('hidden');
+                
+                // Continue with remaining elements
+                applyTypewriterToElement(selectExperience, function() {
+                    applyTypewriterToElement(chooseStory, function() {
+                        applyTypewriterToElement(typewriterLabel);
+                    });
+                });
+            });
+            
+            // Handle radio button changes
+            radioButtons.forEach(function(radio) {
+                radio.addEventListener('change', function() {
+                    // Enable/disable the hidden input for the selected option
+                    document.querySelectorAll('.speed-option input[type="hidden"]').forEach(function(input) {
+                        input.disabled = true;
+                    });
+                    
+                    if (this.value === 'yes') {
+                        const hiddenInput = this.parentNode.querySelector('input[type="hidden"]');
+                        if (hiddenInput) {
+                            hiddenInput.disabled = false;
+                        }
+                    }
+                });
+            });
+            
+            // Handle Apply button click
+            applyButton.addEventListener('click', function() {
+                // Get selected typewriter effect
+                const selectedRadio = document.querySelector('input[name="typewriter_effect"]:checked');
+                const isTypewriterEffect = selectedRadio.value === 'yes';
+                let charDelay = 0;
+                
+                if (isTypewriterEffect) {
+                    const hiddenInput = selectedRadio.parentNode.querySelector('input[type="hidden"]');
+                    charDelay = parseFloat(hiddenInput.value);
+                }
+                
+                // Set values for the form submission
+                finalEffectType.value = isTypewriterEffect ? 'yes' : 'no';
+                finalDelayValue.value = charDelay;
+                
+                // Hide the typewriter selection
+                document.getElementById('typewriter-selection').classList.add('hidden');
+                
+                // Prepare paragraphs for typewriter effect
+                const paragraphs = introSection.querySelectorAll('p');
+                
+                if (isTypewriterEffect) {
+                    // Store original text and clear content BEFORE showing the section
+                    paragraphs.forEach(paragraph => {
+                        // Store original text in data attribute
+                        paragraph.dataset.originalText = paragraph.textContent;
+                        // Clear the text so it's not visible when intro section appears
+                        paragraph.textContent = '';
+                    });
+                }
+                
+                // Now show the intro section (with empty paragraphs if typewriter effect is on)
+                introSection.classList.remove('hidden');
+                
+                // Apply typewriter effect if selected
+                if (isTypewriterEffect) {
+                    let paragraphIndex = 0;
+                    
+                    function typeNextParagraph() {
+                        if (paragraphIndex < paragraphs.length) {
+                            const paragraph = paragraphs[paragraphIndex];
+                            const text = paragraph.dataset.originalText;
+                            let charIndex = 0;
+                            
+                            function typeWriter() {
+                                if (charIndex < text.length) {
+                                    paragraph.textContent += text.charAt(charIndex);
+                                    charIndex++;
+                                    setTimeout(typeWriter, charDelay * 1000);
+                                } else {
+                                    paragraphIndex++;
+                                    setTimeout(typeNextParagraph, 100); // Small delay between paragraphs
+                                }
+                            }
+                            
+                            typeWriter();
+                        } else {
+                            // Show start button after all paragraphs are typed
+                            startForm.classList.remove('hidden');
+                        }
+                    }
+                    
+                    typeNextParagraph();
+                } else {
+                    // Show start button immediately if no typewriter effect
+                    startForm.classList.remove('hidden');
                 }
             });
         });
