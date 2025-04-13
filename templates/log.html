@@ -15,7 +15,7 @@
                 <ul class="event-list">
                     {% for event in events %}
                         <li class="event-item">
-                            <p class="event-desc">{{ event.description }}</p>
+                            <p class="event-desc">{{ event.id_num }}: {{ event.location_name }}</p>
                             {% if event.command %}
                                 <p class="event-cmd">You chose: {{ event.command }}</p>
                             {% endif %}

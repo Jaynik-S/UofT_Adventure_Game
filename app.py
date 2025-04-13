@@ -187,13 +187,19 @@ def view_log():
     if 'current_location_id' not in session:
         return redirect(url_for('index'))
     
+    # Load game state to access location names
+    game = load_game_state()
+    
     # Get events from game log
     events = []
     current_event = game_log.first
     
     while current_event:
+        # Get location name from location ID
+        location_name = game.get_location(current_event.id_num).name
         events.append({
-            'description': current_event.description,
+            'id_num': current_event.id_num,
+            'location_name': location_name,
             'command': current_event.next_command
         })
         current_event = current_event.next
