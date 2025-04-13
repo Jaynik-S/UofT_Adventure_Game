@@ -194,7 +194,7 @@ small {
 }
 
 .right-column {
-    flex: 1;
+    flex: 2;
     min-width: 250px;
     display: flex;
     flex-direction: column;
@@ -232,6 +232,7 @@ small {
     background-color: #f8f9fa;
     padding: 15px;
     border-radius: 8px;
+    margin-top: 15px;
 }
 
 .inventory-list {
@@ -440,12 +441,12 @@ small {
     display: flex;
     gap: 15px;
     margin-bottom: 15px;
-    border: 1px red solid;
+    border: none;
 }
 
 .movement-section {
     flex: 3;
-    border: 1px blue solid;
+    border: none;
 }
 
 .movement-section h3 {
@@ -458,9 +459,29 @@ small {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 1px green solid;
+    border: none;
 }
 
 .other-actions-section h3 {
     text-align: center;
+}
+
+/* Location Info Styling */
+.location-header {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.location-header h2 {
+    margin: 0;
+    white-space: nowrap;
+}
+
+.location-header h2::after {
+    content: " -";
+}
+
+.location-header p {
+    margin: 0;
 }
