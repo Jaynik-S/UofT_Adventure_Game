@@ -33,7 +33,17 @@ def start_game():
     global game_log
     game_log = EventList()
     current_location = game.get_location()
-    game_log.add_event(Event(current_location.id_num, current_location.brief_description, None))
+    # Capture complete initial state with all items
+    game_log.add_event(Event(
+        current_location.id_num, 
+        current_location.brief_description, 
+        None,
+        inventory=game.inventory.copy(),
+        stamina=game.stamina,
+        items_present={loc_id: loc.items_present.copy() for loc_id, loc in game._locations.items()},
+        score=game.score
+    ))
+    
     
     # Set typewriter effect preference
     session['typewriter_effect'] = request.form.get('typewriter_effect', 'no') == 'yes'
@@ -141,19 +151,30 @@ def action():
     if action == 'go':
         direction = request.form.get('direction')
         handle_go_action(game, direction)
+        # Save the event to the log with complete command information
+        game_log.add_event_to_log(game, f"{action} {direction}")
     elif action == 'take':
         item_name = request.form.get('item')
         handle_take_action(game, item_name)
+        # Save the event to the log with complete command information
+        game_log.add_event_to_log(game, f"{action} {item_name}")
     elif action == 'deposit':
         item_name = request.form.get('item')
         handle_deposit_action(game, item_name)
+        # Save the event to the log with complete command information
+        game_log.add_event_to_log(game, f"{action} {item_name}")
     elif action == 'drop':
         item_name = request.form.get('item')
         handle_drop_action(game, item_name)
+        # Save the event to the log with complete command information
+        game_log.add_event_to_log(game, f"{action} {item_name}")
     elif action == 'craft':
         handle_craft_action(game)
+        # Save the event to the log
+        game_log.add_event_to_log(game, "craft fixed laptop charger")
     elif action == 'undo':
         handle_undo_action(game)
+        # Don't add a new event for undo - this would interfere with state management
     
     # Save updated game state
     save_game_state(game)
@@ -239,10 +260,6 @@ def handle_go_action(game, direction):
     if direction in location.available_movements:
         game.stamina -= 3  # reduce stamina for traveling
         game.current_location_id = location.available_movements[direction]
-        
-        # Log the event
-        next_location = game.get_location()
-        game_log.add_event(Event(next_location.id_num, next_location.brief_description), f"go {direction}")
 
 def handle_take_action(game, item_name):
     """Handle the take action"""
@@ -252,9 +269,6 @@ def handle_take_action(game, item_name):
         game.inventory[item_name] = item
         game.score += item.pickup_points
         game.stamina -= item.pickup_stamina_usage
-        
-        # Log the event
-        game_log.add_event(Event(location.id_num, f"Took {item_name}"), f"take {item_name}")
 
 def handle_deposit_action(game, item_name):
     """Handle the deposit action"""
@@ -267,9 +281,6 @@ def handle_deposit_action(game, item_name):
         # Handle special items
         if item_name == "lost backpack":
             game.inventory_size = 7
-        
-        # Log the event
-        game_log.add_event(Event(location.id_num, f"Used {item_name}"), f"deposit {item_name}")
 
 def handle_drop_action(game, item_name):
     """Handle the drop action"""
@@ -278,9 +289,6 @@ def handle_drop_action(game, item_name):
         item = game.inventory.pop(item_name)
         location.items_present[item_name] = item
         game.score -= item.pickup_points  # Remove points gained from taking item
-        
-        # Log the event
-        game_log.add_event(Event(location.id_num, f"Dropped {item_name}"), f"drop {item_name}")
 
 def handle_craft_action(game):
     """Handle the crafting of the fixed laptop charger"""
@@ -299,19 +307,13 @@ def handle_craft_action(game):
             0, 0, 0, 0
         )
         game.inventory["fixed laptop charger"] = fixed_laptop_charger
-        
-        # Log the event
-        game_log.add_event(Event(game.current_location_id, "Fixed your laptop charger!"), "Took fixed laptop charger")
 
-def handle_undo_action(game): 
+def handle_undo_action(game):
     """Handle the undo action"""
+    # Just call undo_last_action without adding another event
+    # This is consistent with the terminal version implementation
     message = game_log.undo_last_action(game)
-    if game_log.last:
-        game.current_location_id = game_log.last.id_num
-    
-    # Log the undo event
-    current_location = game.get_location()
-    game_log.add_event(Event(current_location.id_num, "Undid last action"), "undo")
+    return message
 
 if __name__ == '__main__':
     app.run(debug=True)
