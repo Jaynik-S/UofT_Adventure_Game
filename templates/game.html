@@ -53,7 +53,9 @@
                         <p class="typewriter">{{ description }}</p>
                     </div>
                     
-                    {% if has_enough_points and has_charger and location.id_num != 1 %}
+                    {% if recently_used_item %}
+                        <p class="hint success typewriter">{{ recently_used_item.quest_complete_description }}</p>
+                    {% elif has_enough_points and has_charger and location.id_num != 1 %}
                         <p class="hint typewriter">You have everything required to complete your assignment. Return to Woodsworth College Residence to submit your assignment and finish your journey.</p>
                     {% elif has_enough_points %}
                         <p class="hint typewriter">You have enough points to get your desired score, but your laptop charger is still broken. There might be some items you need to find to fix it.</p>

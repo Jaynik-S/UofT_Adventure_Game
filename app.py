@@ -73,6 +73,11 @@ def game():
     location = game.get_location()
     location_id = str(location.id_num)
     
+    # Check for recently used item
+    recently_used_item = None
+    if 'recently_used_item' in session:
+        recently_used_item = Item(**session['recently_used_item'])
+    
     # Check if location has been visited before
     if location_id not in session['visited']:
         session['visited'][location_id] = False
@@ -120,6 +125,7 @@ def game():
         available_moves=available_moves,
         items_present=items_present,
         inventory=game.inventory,
+        recently_used_item=recently_used_item,
         inventory_size=game.inventory_size,
         score=game.score,
         stamina=game.stamina,
@@ -283,6 +289,8 @@ def handle_deposit_action(game, item_name):
         item = game.inventory.pop(item_name)
         game.score += item.use_points
         game.stamina = min(100, game.stamina - item.use_stamina_usage)
+        
+        session['recently_used_item'] = vars(item)
         
         # Handle special items
         if item_name == "lost backpack":
