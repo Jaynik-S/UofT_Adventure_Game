@@ -111,5 +111,9 @@ The game is built using Python with:
 - Flask web framework for the browser-based version
 - Responsive web interface with typewriter text effects
 
+## ⚠️ Disclaimer
+
+This game is an independent student project and is not affiliated with, endorsed by, or sponsored by the University of Toronto. All references to campus locations are fictionalized and intended for entertainment purposes.
+
 
 
