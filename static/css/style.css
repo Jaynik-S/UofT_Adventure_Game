@@ -389,6 +389,10 @@ small {
 }
 
 /* Enhanced Other Actions Section */
+#welcome-title {
+  color: var(--primary);
+}
+
 .other-actions-section {
   flex: 1;
   display: flex;

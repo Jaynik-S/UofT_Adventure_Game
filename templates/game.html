@@ -290,29 +290,20 @@
         </div>
     </footer>
 
+    <!-- Set data attributes for typewriter script to use -->
     {% if typewriter_effect %}
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const typewriterElements = document.querySelectorAll('.typewriter');
-            const charDelay = {{ char_delay }} * 1000; // Convert to milliseconds
-            
-            typewriterElements.forEach(element => {
-                const text = element.textContent;
-                element.textContent = '';
-                let i = 0;
-                
-                function typeWriter() {
-                    if (i < text.length) {
-                        element.textContent += text.charAt(i);
-                        i++;
-                        setTimeout(typeWriter, charDelay);
-                    }
-                }
-                
-                typeWriter();
-            });
-        });
+        document.body.dataset.typewriterEnabled = 'true';
+        document.body.dataset.charDelay = '{{ char_delay }}';
+    </script>
+    {% else %}
+    <script>
+        document.body.dataset.typewriterEnabled = 'false';
+        document.body.dataset.charDelay = '0';
     </script>
     {% endif %}
+    
+    <!-- Include external JavaScript file -->
+    <script src="{{ url_for('static', filename='js/typewriter.js') }}"></script>
 </body>
 </html>
