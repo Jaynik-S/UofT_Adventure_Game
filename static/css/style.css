@@ -404,3 +404,33 @@ small {
 .speed-option input[type="radio"]:checked + label:hover {
     background-color: #3367d6;
 }
+
+/* Item Action Styles */
+.item-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.item-action {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.item-form {
+    display: inline-block;
+    margin: 0;
+}
+
+.item-btn {
+    min-width: 120px;
+}
+
+.item-description {
+    flex: 1;
+    font-size: 14px;
+    color: #5f6368;
+}
