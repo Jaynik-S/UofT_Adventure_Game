@@ -258,7 +258,7 @@ small {
 }
 
 .right-column {
-  flex: 2;
+  flex: 1;
   min-width: 250px;
   display: flex;
   flex-direction: column;
@@ -341,7 +341,7 @@ small {
 .craft-message {
   background-color: rgba(16, 185, 129, 0.1);
   padding: 1rem;
-  border-radius: var(--radius);
+  border-radius: var (--radius);
   margin-top: 1rem;
   border-left: 4px solid var(--secondary);
 }
@@ -390,7 +390,7 @@ small {
 
 /* Enhanced Other Actions Section */
 .other-actions-section {
-  flex: 2;
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -477,7 +477,7 @@ small {
 }
 
 .item-description {
-  flex: 1;
+  flex: 2;
   font-size: 0.875rem;
   color: var(--gray-500);
   line-height: 1.4;
@@ -611,6 +611,59 @@ small {
   background-color: var(--primary-hover);
 }
 
+/* Map Column Styles */
+.map-column {
+  flex: 1;
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 1rem;
+}
+
+.map-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.map-icon {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+}
+
+.map-table td {
+  text-align: center;
+  padding: 8px;
+  border: 1px solid var(--gray-200);
+  transition: all 0.2s ease;
+}
+
+.map-table td.current-location {
+  background-color: rgba(99, 102, 241, 0.1);
+  border: 2px solid var(--primary);
+}
+
+.map-table td.current-location .map-icon {
+  transform: scale(1.2);
+}
+
+.map-table td.empty-cell {
+  background-color: var(--gray-100);
+}
+
+.map-legend-mini {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  color: var(--gray-700);
+  text-align: center;
+}
+
+.map-legend-mini strong {
+  color: var(--primary);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .game-actions {
@@ -648,5 +701,18 @@ small {
   
   .controls-container {
     flex-direction: column;
+  }
+}
+
+/* Responsive adjustments for the map */
+@media (max-width: 1200px) {
+  .game-actions {
+    flex-wrap: wrap;
+  }
+  
+  .map-column {
+    margin-top: 1.5rem;
+    margin-left: 0;
+    width: 100%;
   }
 }

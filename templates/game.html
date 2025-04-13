@@ -214,6 +214,60 @@
                             {% endif %}
                         </div>
                     </div>
+                    
+                    <div class="map-column">
+                        <div class="action-section map-section">
+                            <h3>Game Map</h3>
+                            <table class="map-table">
+                                <tr>
+                                    <td class="empty-cell">-</td>
+                                    <td class="{% if location.id_num == 6 %}current-location{% endif %}">
+                                        <img src="static/images/icons/6.png" alt="6" class="map-icon">
+                                    </td>
+                                    <td class="{% if location.id_num == 7 %}current-location{% endif %}">
+                                        <img src="static/images/icons/7.png" alt="7" class="map-icon">
+                                    </td>
+                                    <td class="{% if location.id_num == 10 %}current-location{% endif %}">
+                                        <img src="static/images/icons/10.png" alt="10" class="map-icon">
+                                    </td>
+                                    <td class="{% if location.id_num == 11 %}current-location{% endif %}">
+                                        <img src="static/images/icons/11.png" alt="11" class="map-icon">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="{% if location.id_num == 9 %}current-location{% endif %}">
+                                        <img src="static/images/icons/9.png" alt="9" class="map-icon">
+                                    </td>
+                                    <td class="{% if location.id_num == 4 %}current-location{% endif %}">
+                                        <img src="static/images/icons/4.png" alt="4" class="map-icon">
+                                    </td>
+                                    <td class="{% if location.id_num == 2 %}current-location{% endif %}">
+                                        <img src="static/images/icons/2.png" alt="2" class="map-icon">
+                                    </td>
+                                    <td class="empty-cell">-</td>
+                                    <td class="{% if location.id_num == 8 %}current-location{% endif %}">
+                                        <img src="static/images/icons/8.png" alt="8" class="map-icon">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="empty-cell">-</td>
+                                    <td class="empty-cell">-</td>
+                                    <td class="{% if location.id_num == 1 %}current-location{% endif %}">
+                                        <img src="static/images/icons/1.png" alt="1" class="map-icon">
+                                    </td>
+                                    <td class="{% if location.id_num == 3 %}current-location{% endif %}">
+                                        <img src="static/images/icons/3.png" alt="3" class="map-icon">
+                                    </td>
+                                    <td class="{% if location.id_num == 5 %}current-location{% endif %}">
+                                        <img src="static/images/icons/5.png" alt="5" class="map-icon">
+                                    </td>
+                                </tr>
+                            </table>
+                            <div class="map-legend-mini">
+                                <p>You are at: <strong>{{ location.id_num }}</strong> - {{ location.name }}</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             {% endif %}
         </div>
