@@ -72,60 +72,62 @@
 
                 <div class="game-actions">
                     <div class="left-column">
-                        <div class="action-section">
-                            <h3>Movement</h3>
-                            <form action="{{ url_for('action') }}" method="post">
-                                <input type="hidden" name="action" value="go">
-                                <table style="margin: 0 auto; border-spacing: 5px;">
-                                    <tr>
-                                        <td style="width: 33%;"></td>
-                                        <td style="width: 33%; text-align: center; height: 45px;">
-                                            {% if 'north' in available_moves %}
-                                                <button type="submit" name="direction" value="north" class="direction-btn">↑<br>North</button>
-                                            {% else %}
-                                                <div style="height: 45px; width: 1px;"></div>
-                                            {% endif %}
-                                        </td>
-                                        <td style="width: 33%;"></td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center; width: 33%; height: 45px;">
-                                            {% if 'west' in available_moves %}
-                                                <button type="submit" name="direction" value="west" class="direction-btn">←<br>West</button>
-                                            {% else %}
-                                                <div style="height: 45px; width: 1px;"></div>
-                                            {% endif %}
-                                        </td>
-                                        <td></td>
-                                        <td style="text-align: center; width: 33%; height: 45px;">
-                                            {% if 'east' in available_moves %}
-                                                <button type="submit" name="direction" value="east" class="direction-btn">→<br>East</button>
-                                            {% else %}
-                                                <div style="height: 45px; width: 1px;"></div>
-                                            {% endif %}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td style="text-align: center; height: 45px;">
-                                            {% if 'south' in available_moves %}
-                                                <button type="submit" name="direction" value="south" class="direction-btn">↓<br>South</button>
-                                            {% else %}
-                                                <div style="height: 45px; width: 1px;"></div>
-                                            {% endif %}
-                                        </td>
-                                        <td></td>
-                                    </tr>
-                                </table>
-                            </form>
-                        </div>
-                        
-                        <div class="action-section">
-                            <h3>Other Actions</h3>
-                            <form action="{{ url_for('action') }}" method="post">
-                                <input type="hidden" name="action" value="undo">
-                                <button type="submit" class="btn">Undo Last Action</button>
-                            </form>
+                        <div class="controls-container">
+                            <div class="action-section movement-section">
+                                <h3>Movement</h3>
+                                <form action="{{ url_for('action') }}" method="post">
+                                    <input type="hidden" name="action" value="go">
+                                    <table style="margin: 0 auto; border-spacing: 5px;">
+                                        <tr>
+                                            <td style="width: 33%;"></td>
+                                            <td style="width: 33%; text-align: center; height: 45px;">
+                                                {% if 'north' in available_moves %}
+                                                    <button type="submit" name="direction" value="north" class="direction-btn">↑<br>North</button>
+                                                {% else %}
+                                                    <div style="height: 45px; width: 1px;"></div>
+                                                {% endif %}
+                                            </td>
+                                            <td style="width: 33%;"></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align: center; width: 33%; height: 45px;">
+                                                {% if 'west' in available_moves %}
+                                                    <button type="submit" name="direction" value="west" class="direction-btn">←<br>West</button>
+                                                {% else %}
+                                                    <div style="height: 45px; width: 1px;"></div>
+                                                {% endif %}
+                                            </td>
+                                            <td></td>
+                                            <td style="text-align: center; width: 33%; height: 45px;">
+                                                {% if 'east' in available_moves %}
+                                                    <button type="submit" name="direction" value="east" class="direction-btn">→<br>East</button>
+                                                {% else %}
+                                                    <div style="height: 45px; width: 1px;"></div>
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td style="text-align: center; height: 45px;">
+                                                {% if 'south' in available_moves %}
+                                                    <button type="submit" name="direction" value="south" class="direction-btn">↓<br>South</button>
+                                                {% else %}
+                                                    <div style="height: 45px; width: 1px;"></div>
+                                                {% endif %}
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                    </table>
+                                </form>
+                            </div>
+                            
+                            <div class="action-section other-actions-section">
+                                <h3>Other Actions</h3>
+                                <form action="{{ url_for('action') }}" method="post">
+                                    <input type="hidden" name="action" value="undo">
+                                    <button type="submit" class="btn">Undo Last Action</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
 

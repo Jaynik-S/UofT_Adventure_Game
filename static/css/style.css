@@ -434,3 +434,33 @@ small {
     font-size: 14px;
     color: #5f6368;
 }
+
+/* Movement and Other Actions layout */
+.controls-container {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    border: 1px red solid;
+}
+
+.movement-section {
+    flex: 3;
+    border: 1px blue solid;
+}
+
+.movement-section h3 {
+    text-align: center;
+}
+
+.other-actions-section {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px green solid;
+}
+
+.other-actions-section h3 {
+    text-align: center;
+}
