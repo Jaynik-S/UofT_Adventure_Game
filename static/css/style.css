@@ -361,3 +361,46 @@ small {
         justify-content: space-between;
     }
 }
+
+/* Speed Buttons Styles */
+.speed-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.speed-option {
+    position: relative;
+}
+
+.speed-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.speed-option label {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #e8eaed;
+    color: #3c4043;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+.speed-option input[type="radio"]:checked + label {
+    background-color: #4285f4;
+    color: white;
+}
+
+.speed-option label:hover {
+    background-color: #dadce0;
+}
+
+.speed-option input[type="radio"]:checked + label:hover {
+    background-color: #3367d6;
+}

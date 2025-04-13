@@ -38,17 +38,33 @@
         
         <form action="{{ url_for('start_game') }}" method="post">
             <div class="form-group">
-                <label for="typewriter_effect">Enable typewriter effect?</label>
-                <select name="typewriter_effect" id="typewriter_effect">
-                    <option value="yes">Yes</option>
-                    <option value="no" selected>No</option>
-                </select>
-            </div>
-            
-            <div class="form-group" id="typewriter_settings" style="display: none;">
-                <label for="char_delay">Character delay (seconds):</label>
-                <input type="number" name="char_delay" id="char_delay" step="0.001" min="0.001" max="0.1" value="0.0225">
-                <small>Recommended: 0.0225, Fast: 0.01</small>
+                <label>Typewriter Effect:</label>
+                <div class="speed-buttons">
+                    <div class="speed-option">
+                        <input type="radio" name="typewriter_effect" id="none" value="no" checked>
+                        <label for="none">None</label>
+                    </div>
+                    <div class="speed-option">
+                        <input type="radio" name="typewriter_effect" id="slow" value="yes">
+                        <label for="slow">Slow</label>
+                        <input type="hidden" name="char_delay" value="0.05" disabled>
+                    </div>
+                    <div class="speed-option">
+                        <input type="radio" name="typewriter_effect" id="medium" value="yes">
+                        <label for="medium">Medium</label>
+                        <input type="hidden" name="char_delay" value="0.025" disabled>
+                    </div>
+                    <div class="speed-option">
+                        <input type="radio" name="typewriter_effect" id="fast" value="yes">
+                        <label for="fast">Fast</label>
+                        <input type="hidden" name="char_delay" value="0.017" disabled>
+                    </div>
+                    <div class="speed-option">
+                        <input type="radio" name="typewriter_effect" id="very-fast" value="yes">
+                        <label for="very-fast">Very Fast</label>
+                        <input type="hidden" name="char_delay" value="0.0075" disabled>
+                    </div>
+                </div>
             </div>
             
             <button type="submit" class="btn">Start Adventure</button>
@@ -56,13 +72,20 @@
     </div>
     
     <script>
-        document.getElementById('typewriter_effect').addEventListener('change', function() {
-            const settings = document.getElementById('typewriter_settings');
-            if (this.value === 'yes') {
-                settings.style.display = 'block';
-            } else {
-                settings.style.display = 'none';
-            }
+        document.querySelectorAll('input[name="typewriter_effect"]').forEach(function(radio) {
+            radio.addEventListener('change', function() {
+                // Enable/disable the hidden input for the selected option
+                document.querySelectorAll('.speed-option input[type="hidden"]').forEach(function(input) {
+                    input.disabled = true;
+                });
+                
+                if (this.value === 'yes') {
+                    const hiddenInput = this.parentNode.querySelector('input[type="hidden"]');
+                    if (hiddenInput) {
+                        hiddenInput.disabled = false;
+                    }
+                }
+            });
         });
     </script>
 </body>
