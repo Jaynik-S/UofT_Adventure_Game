@@ -157,7 +157,7 @@
                         <div class="action-section">
                             <h3>Take Items</h3>
                             {% if can_take %}
-                                <div class="item-buttons">
+                                <div class="item-buttons take-item-buttons" data-typewriter="{{ 'true' if typewriter_effect else 'false' }}" data-char-delay="{{ char_delay }}">
                                     {% for item_name, item in items_present.items() %}
                                         <div class="item-action">
                                             <form action="{{ url_for('action') }}" method="post" class="item-form">
@@ -177,7 +177,7 @@
                         <div class="action-section">
                             <h3>Use Items</h3>
                             {% if can_deposit and usable_items %}
-                                <div class="item-buttons">
+                                <div class="item-buttons use-item-buttons" data-typewriter="{{ 'true' if typewriter_effect else 'false' }}" data-char-delay="{{ char_delay }}">
                                     {% for item_name in usable_items %}
                                         <div class="item-action">
                                             <form action="{{ url_for('action') }}" method="post" class="item-form">
@@ -197,7 +197,7 @@
                         <div class="action-section">
                             <h3>Drop Items</h3>
                             {% if can_drop %}
-                                <div class="item-buttons">
+                                <div class="item-buttons drop-item-buttons" data-typewriter="{{ 'true' if typewriter_effect else 'false' }}" data-char-delay="{{ char_delay }}">
                                     {% for item_name, item in inventory.items() %}
                                         <div class="item-action">
                                             <form action="{{ url_for('action') }}" method="post" class="item-form">
