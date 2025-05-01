@@ -2,6 +2,26 @@
 
 An adventure game set at the University of Toronto!
 
+## 📖 Game Overview
+
+**Story**: You wake up to find your laptop dead and its unique charger broken. With an important assignment due soon, you must race against time to collect items across campus, fix your charger, and help others along the way.
+
+**Goal**: Repair your laptop charger, earn 100 points, and return to your dorm before running out of stamina.
+
+## 🎮 How to Play
+
+### Web Version
+
+1. **Install**: Ensure you have Flask installed (`pip install flask`)
+2. **Run**: Execute `python app.py` in your terminal
+3. **Play**: Open your browser and navigate to `http://localhost:5000`
+
+### Terminal Version
+
+1. **Install**: Clone the repository to your local machine
+2. **Run**: Execute `python adventure.py` in your terminal
+3. **Optional**: Customize typewriter text effect when prompted
+
 ## ✨ Features
 
 - **Text Adventure Engine**:
@@ -22,26 +42,6 @@ An adventure game set at the University of Toronto!
   - Flask-powered web application with responsive design
   - Session-based state management in web version
   - Interactive UI with dynamic content updates
-
-## 🎮 How to Play
-
-### Web Version
-
-1. **Install**: Ensure you have Flask installed (`pip install flask`)
-2. **Run**: Execute `python app.py` in your terminal
-3. **Play**: Open your browser and navigate to `http://localhost:5000`
-
-### Terminal Version
-
-1. **Install**: Clone the repository to your local machine
-2. **Run**: Execute `python adventure.py` in your terminal
-3. **Optional**: Customize typewriter text effect when prompted
-
-## 📖 Game Overview
-
-**Story**: You wake up to find your laptop dead and its unique charger broken. With an important assignment due soon, you must race against time to collect items across campus, fix your charger, and help others along the way.
-
-**Goal**: Repair your laptop charger, earn 100 points, and return to your dorm before running out of stamina.
 
 ## 📍 Locations
 
