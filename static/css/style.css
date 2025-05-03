@@ -668,6 +668,150 @@ small {
   color: var(--primary);
 }
 
+/* Enhanced Map Styles */
+.map-container {
+    position: relative;
+    margin: 0 auto;
+    max-width: 400px;
+}
+
+.map-direction-indicator {
+    position: absolute;
+    font-weight: bold;
+    color: var(--gray-700);
+}
+
+.north-indicator {
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.south-indicator {
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.west-indicator {
+    left: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.east-indicator {
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.map-table {
+    position: relative;
+    border-collapse: separate;
+    border-spacing: 5px;
+}
+
+.map-table td {
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    border-radius: var(--radius);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.map-icon {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s ease;
+}
+
+.map-table td.current-location {
+    background-color: rgba(99, 102, 241, 0.2);
+    box-shadow: 0 0 0 3px var(--primary);
+    z-index: 2;
+}
+
+.map-table td.available-move {
+    background-color: rgba(16, 185, 129, 0.1);
+    box-shadow: 0 0 0 2px var(--secondary);
+}
+
+.map-connector {
+    position: absolute;
+    background-color: var(--gray-300);
+    z-index: 1;
+}
+
+.horizontal-connector {
+    height: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.vertical-connector {
+    width: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.map-legend-container {
+    margin-top: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 0.5rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    padding: 0.25rem;
+    border-radius: var(--radius);
+    transition: background-color 0.2s ease;
+}
+
+.legend-item:hover {
+    background-color: var(--gray-100);
+}
+
+.legend-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 0.5rem;
+}
+
+.legend-text {
+    font-size: 0.8rem;
+    color: var(--gray-700);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.legend-text strong {
+    color: var(--dark);
+    margin-right: 0.25rem;
+}
+
+/* Enhanced Map Responsiveness */
+@media (max-width: 768px) {
+    .map-table td {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .map-icon {
+      width: 30px;
+      height: 30px;
+      display: block;
+      margin: 0 auto;
+    }
+    
+    .map-legend-container {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .game-actions {

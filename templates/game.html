@@ -218,53 +218,117 @@
                     <div class="map-column">
                         <div class="action-section map-section">
                             <h3>Game Map</h3>
-                            <table class="map-table">
-                                <tr>
-                                    <td class="empty-cell">-</td>
-                                    <td class="{% if location.id_num == 6 %}current-location{% endif %}">
-                                        <img src="static/images/icons/6.png" alt="6" class="map-icon">
-                                    </td>
-                                    <td class="{% if location.id_num == 7 %}current-location{% endif %}">
-                                        <img src="static/images/icons/7.png" alt="7" class="map-icon">
-                                    </td>
-                                    <td class="{% if location.id_num == 10 %}current-location{% endif %}">
-                                        <img src="static/images/icons/10.png" alt="10" class="map-icon">
-                                    </td>
-                                    <td class="{% if location.id_num == 11 %}current-location{% endif %}">
-                                        <img src="static/images/icons/11.png" alt="11" class="map-icon">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="{% if location.id_num == 9 %}current-location{% endif %}">
-                                        <img src="static/images/icons/9.png" alt="9" class="map-icon">
-                                    </td>
-                                    <td class="{% if location.id_num == 4 %}current-location{% endif %}">
-                                        <img src="static/images/icons/4.png" alt="4" class="map-icon">
-                                    </td>
-                                    <td class="{% if location.id_num == 2 %}current-location{% endif %}">
-                                        <img src="static/images/icons/2.png" alt="2" class="map-icon">
-                                    </td>
-                                    <td class="empty-cell">-</td>
-                                    <td class="{% if location.id_num == 8 %}current-location{% endif %}">
-                                        <img src="static/images/icons/8.png" alt="8" class="map-icon">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="empty-cell">-</td>
-                                    <td class="empty-cell">-</td>
-                                    <td class="{% if location.id_num == 1 %}current-location{% endif %}">
-                                        <img src="static/images/icons/1.png" alt="1" class="map-icon">
-                                    </td>
-                                    <td class="{% if location.id_num == 3 %}current-location{% endif %}">
-                                        <img src="static/images/icons/3.png" alt="3" class="map-icon">
-                                    </td>
-                                    <td class="{% if location.id_num == 5 %}current-location{% endif %}">
-                                        <img src="static/images/icons/5.png" alt="5" class="map-icon">
-                                    </td>
-                                </tr>
-                            </table>
+                            <div class="map-container">
+                                <!-- Direction indicators -->
+                                <div class="map-direction-indicator north-indicator">N</div>
+                                <div class="map-direction-indicator south-indicator">S</div>
+                                <div class="map-direction-indicator west-indicator">W</div>
+                                <div class="map-direction-indicator east-indicator">E</div>
+                                
+                                <table class="map-table">
+                                    <tr>
+                                        <td class="empty-cell">-</td>
+                                        <td class="{% if location.id_num == 6 %}current-location{% elif 6 in available_moves.values() %}available-move{% endif %}">
+                                            <img src="static/images/icons/6.png" alt="6" class="map-icon">
+                                        </td>
+                                        <td class="{% if location.id_num == 7 %}current-location{% elif 7 in available_moves.values() %}available-move{% endif %}">
+                                            <img src="static/images/icons/7.png" alt="7" class="map-icon">
+                                        </td>
+                                        <td class="{% if location.id_num == 10 %}current-location{% elif 10 in available_moves.values() %}available-move{% endif %}">
+                                            <img src="static/images/icons/10.png" alt="10" class="map-icon">
+                                        </td>
+                                        <td class="{% if location.id_num == 11 %}current-location{% elif 11 in available_moves.values() %}available-move{% endif %}">
+                                            <img src="static/images/icons/11.png" alt="11" class="map-icon">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="{% if location.id_num == 9 %}current-location{% elif 9 in available_moves.values() %}available-move{% endif %}">
+                                            <img src="static/images/icons/9.png" alt="9" class="map-icon">
+                                        </td>
+                                        <td class="{% if location.id_num == 4 %}current-location{% elif 4 in available_moves.values() %}available-move{% endif %}">
+                                            <img src="static/images/icons/4.png" alt="4" class="map-icon">
+                                        </td>
+                                        <td class="{% if location.id_num == 2 %}current-location{% elif 2 in available_moves.values() %}available-move{% endif %}">
+                                            <img src="static/images/icons/2.png" alt="2" class="map-icon">
+                                        </td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="{% if location.id_num == 8 %}current-location{% elif 8 in available_moves.values() %}available-move{% endif %}">
+                                            <img src="static/images/icons/8.png" alt="8" class="map-icon">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="{% if location.id_num == 1 %}current-location{% elif 1 in available_moves.values() %}available-move{% endif %}">
+                                            <img src="static/images/icons/1.png" alt="1" class="map-icon">
+                                        </td>
+                                        <td class="{% if location.id_num == 3 %}current-location{% elif 3 in available_moves.values() %}available-move{% endif %}">
+                                            <img src="static/images/icons/3.png" alt="3" class="map-icon">
+                                        </td>
+                                        <td class="{% if location.id_num == 5 %}current-location{% elif 5 in available_moves.values() %}available-move{% endif %}">
+                                            <img src="static/images/icons/5.png" alt="5" class="map-icon">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            
                             <div class="map-legend-mini">
                                 <p>You are at: <strong>{{ location.id_num }}</strong> - {{ location.name }}</p>
+                                {% if available_moves %}
+                                <p>Available moves:</p>
+                                <ul style="list-style-type: none; padding: 0; margin: 0.5rem 0;">
+                                    {% for direction, loc_id in available_moves.items() %}
+                                    <li><strong>{{ direction|capitalize }}:</strong> {{ loc_id }}</li>
+                                    {% endfor %}
+                                </ul>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="map-legend-container">
+                                <div class="legend-item">
+                                    <img src="static/images/icons/1.png" alt="1" class="legend-icon">
+                                    <span class="legend-text"><strong>1:</strong> Woodsworth College Residence</span>
+                                </div>
+                                <div class="legend-item">
+                                    <img src="static/images/icons/2.png" alt="2" class="legend-icon">
+                                    <span class="legend-text"><strong>2:</strong> Mechanical Engineering Machine Shop</span>
+                                </div>
+                                <div class="legend-item">
+                                    <img src="static/images/icons/3.png" alt="3" class="legend-icon">
+                                    <span class="legend-text"><strong>3:</strong> Convocation Hal</span>
+                                </div>
+                                <div class="legend-item">
+                                    <img src="static/images/icons/4.png" alt="4" class="legend-icon">
+                                    <span class="legend-text"><strong>4:</strong> King's College Circle </span>
+                                </div>
+                                <div class="legend-item">
+                                    <img src="static/images/icons/5.png" alt="5" class="legend-icon">
+                                    <span class="legend-text"><strong>5:</strong> Robarts Library</span>
+                                </div>
+                                <div class="legend-item">
+                                    <img src="static/images/icons/6.png" alt="6" class="legend-icon">
+                                    <span class="legend-text"><strong>6:</strong> Sandford Fleming Laboratory</span>
+                                </div>
+                                <div class="legend-item">
+                                    <img src="static/images/icons/7.png" alt="7" class="legend-icon">
+                                    <span class="legend-text"><strong>7:</strong> Royal Ontario Museum (ROM)</span>
+                                </div>
+                                <div class="legend-item">
+                                    <img src="static/images/icons/8.png" alt="8" class="legend-icon">
+                                    <span class="legend-text"><strong>8:</strong> Hart House</span>
+                                </div>
+                                <div class="legend-item">
+                                    <img src="static/images/icons/9.png" alt="9" class="legend-icon">
+                                    <span class="legend-text"><strong>9:</strong> Athletic Centre (AC)</span>
+                                </div>
+                                <div class="legend-item">
+                                    <img src="static/images/icons/10.png" alt="10" class="legend-icon">
+                                    <span class="legend-text"><strong>10:</strong> Sidney Smith Cafe</span>
+                                </div>
+                                <div class="legend-item">
+                                    <img src="static/images/icons/11.png" alt="11" class="legend-icon">
+                                    <span class="legend-text"><strong>11:</strong> UofT Bookstore</span>
+                                </div>
                             </div>
                         </div>
                     </div>

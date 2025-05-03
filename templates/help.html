@@ -65,44 +65,85 @@
         
         <div class="game-map">
             <h2>Game Map</h2>
-            <table class="map-table">
-                <tr>
-                    <td>-</td>
-                    <td>6</td>
-                    <td>7</td>
-                    <td>10</td>
-                    <td>11</td>
-                </tr>
-                <tr>
-                    <td>9</td>
-                    <td>4</td>
-                    <td>2</td>
-                    <td>-</td>
-                    <td>8</td>
-                </tr>
-                <tr>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>1</td>
-                    <td>3</td>
-                    <td>5</td>
-                </tr>
-            </table>
+            <div class="map-container">
+                <!-- Direction indicators -->
+                <div class="map-direction-indicator north-indicator">N</div>
+                <div class="map-direction-indicator south-indicator">S</div>
+                <div class="map-direction-indicator west-indicator">W</div>
+                <div class="map-direction-indicator east-indicator">E</div>
+                
+                <table class="map-table">
+                    <tr>
+                        <td class="empty-cell">-</td>
+                        <td><img src="{{ url_for('static', filename='images/icons/6.png') }}" alt="6" class="map-icon"></td>
+                        <td><img src="{{ url_for('static', filename='images/icons/7.png') }}" alt="7" class="map-icon"></td>
+                        <td><img src="{{ url_for('static', filename='images/icons/10.png') }}" alt="10" class="map-icon"></td>
+                        <td><img src="{{ url_for('static', filename='images/icons/11.png') }}" alt="11" class="map-icon"></td>
+                    </tr>
+                    <tr>
+                        <td><img src="{{ url_for('static', filename='images/icons/9.png') }}" alt="9" class="map-icon"></td>
+                        <td><img src="{{ url_for('static', filename='images/icons/4.png') }}" alt="4" class="map-icon"></td>
+                        <td><img src="{{ url_for('static', filename='images/icons/2.png') }}" alt="2" class="map-icon"></td>
+                        <td class="empty-cell">-</td>
+                        <td><img src="{{ url_for('static', filename='images/icons/8.png') }}" alt="8" class="map-icon"></td>
+                    </tr>
+                    <tr>
+                        <td class="empty-cell">-</td>
+                        <td class="empty-cell">-</td>
+                        <td><img src="{{ url_for('static', filename='images/icons/1.png') }}" alt="1" class="map-icon"></td>
+                        <td><img src="{{ url_for('static', filename='images/icons/3.png') }}" alt="3" class="map-icon"></td>
+                        <td><img src="{{ url_for('static', filename='images/icons/5.png') }}" alt="5" class="map-icon"></td>
+                    </tr>
+                </table>
+            </div>
             
             <h3>Map Legend</h3>
-            <ul class="map-legend">
-                <li><strong>1</strong>: Woodsworth College Residence</li>
-                <li><strong>2</strong>: Mechanical Engineering Machine Shop</li>
-                <li><strong>3</strong>: Convocation Hall</li>
-                <li><strong>4</strong>: King's College Circle</li>
-                <li><strong>5</strong>: Robarts Library</li>
-                <li><strong>6</strong>: Sandford Fleming Laboratory</li>
-                <li><strong>7</strong>: Royal Ontario Museum (ROM)</li>
-                <li><strong>8</strong>: Hart House</li>
-                <li><strong>9</strong>: Athletic Centre (AC)</li>
-                <li><strong>10</strong>: Sidney Smith Cafe</li>
-                <li><strong>11</strong>: UofT Bookstore</li>
-            </ul>
+            <div class="map-legend-container">
+                <div class="legend-item">
+                    <img src="{{ url_for('static', filename='images/icons/1.png') }}" alt="1" class="legend-icon">
+                    <span class="legend-text"><strong>1:</strong> Woodsworth College Residence</span>
+                </div>
+                <div class="legend-item">
+                    <img src="{{ url_for('static', filename='images/icons/2.png') }}" alt="2" class="legend-icon">
+                    <span class="legend-text"><strong>2:</strong> Mechanical Engineering Shop</span>
+                </div>
+                <div class="legend-item">
+                    <img src="{{ url_for('static', filename='images/icons/3.png') }}" alt="3" class="legend-icon">
+                    <span class="legend-text"><strong>3:</strong> Convocation Hall</span>
+                </div>
+                <div class="legend-item">
+                    <img src="{{ url_for('static', filename='images/icons/4.png') }}" alt="4" class="legend-icon">
+                    <span class="legend-text"><strong>4:</strong> King's College Circle</span>
+                </div>
+                <div class="legend-item">
+                    <img src="{{ url_for('static', filename='images/icons/5.png') }}" alt="5" class="legend-icon">
+                    <span class="legend-text"><strong>5:</strong> Robarts Library</span>
+                </div>
+                <div class="legend-item">
+                    <img src="{{ url_for('static', filename='images/icons/6.png') }}" alt="6" class="legend-icon">
+                    <span class="legend-text"><strong>6:</strong> Sandford Fleming Laboratory</span>
+                </div>
+                <div class="legend-item">
+                    <img src="{{ url_for('static', filename='images/icons/7.png') }}" alt="7" class="legend-icon">
+                    <span class="legend-text"><strong>7:</strong> Royal Ontario Museum (ROM)</span>
+                </div>
+                <div class="legend-item">
+                    <img src="{{ url_for('static', filename='images/icons/8.png') }}" alt="8" class="legend-icon">
+                    <span class="legend-text"><strong>8:</strong> Hart House</span>
+                </div>
+                <div class="legend-item">
+                    <img src="{{ url_for('static', filename='images/icons/9.png') }}" alt="9" class="legend-icon">
+                    <span class="legend-text"><strong>9:</strong> Athletic Centre (AC)</span>
+                </div>
+                <div class="legend-item">
+                    <img src="{{ url_for('static', filename='images/icons/10.png') }}" alt="10" class="legend-icon">
+                    <span class="legend-text"><strong>10:</strong> Sidney Smith Cafe</span>
+                </div>
+                <div class="legend-item">
+                    <img src="{{ url_for('static', filename='images/icons/11.png') }}" alt="11" class="legend-icon">
+                    <span class="legend-text"><strong>11:</strong> UofT Bookstore</span>
+                </div>
+            </div>
         </div>
         
         <a href="{{ url_for('game') }}" class="btn">Back to Game</a>
