@@ -11,7 +11,9 @@ An adventure game set at the University of Toronto!
 ## 🎮 How to Play
 
 ### Web Version
+**Live**: Click [Here](https://uoftadventuregame.vercel.app/game)!
 
+OR
 1. **Install**: Ensure you have Flask installed (`pip install flask`)
 2. **Run**: Execute `python app.py` in your terminal
 3. **Play**: Open your browser and navigate to `http://localhost:5000`
