@@ -1,5 +1,4 @@
 """UofT Adventure Game - Game Entities
-
 """
 from dataclasses import dataclass, field
 

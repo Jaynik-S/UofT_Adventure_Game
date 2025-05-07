@@ -1,10 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from adventure import AdventureGame
 from game_entities import Item
-from proj1_event_logger import EventList, Event
+from event_logger import EventList, Event
 import os
-
-#TODO: heroku config:set FLASK_SECRET_KEY=your-secret-key
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('FLASK_SECRET_KEY', 'fallback-key-for-dev-only')

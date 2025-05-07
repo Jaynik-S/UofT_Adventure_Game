@@ -6,7 +6,7 @@ from typing import Optional
 
 from game_entities import Location, Item
 from game_helpers import game_begin_msg, help_msg, validate_choice, col_r, col_g, col_b, col_y, tw_print
-from proj1_event_logger import EventList
+from event_logger import EventList
 
 class AdventureGame:
     """A text adventure game class storing all location, item and map data.
